@@ -1,4 +1,4 @@
-# diaryminder
+# Diaryminder
 
 A new Flutter project.
 
