@@ -1,6 +1,6 @@
 # Diaryminder
 
-A new Flutter project.
+100Program７期、diaryminderチームで作成
 
 ## Getting Started
 
