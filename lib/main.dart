@@ -1,3 +1,4 @@
+import 'package:diaryminder/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'constant/app_color.dart';
 
@@ -12,22 +13,22 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(colorSchemeSeed: AppColor.brand.secondary),
-      home: const MyHomePage(title: 'Diaryminder'),
+      home: const TitlePage(title: 'Diaryminder'),
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class TitlePage extends StatefulWidget {
+  const TitlePage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<TitlePage> createState() => _TitlePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _TitlePageState extends State<TitlePage> {
   // int _counter = 0;
 
   // void _incrementCounter() {
@@ -52,24 +53,32 @@ class _MyHomePageState extends State<MyHomePage> {
         //   title: Text(widget.title),
         // ),
         backgroundColor: Colors.transparent,
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Text(
-                'Diaryminder',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontFamily: 'JockeyOne',
-                  fontSize: 50,
-                  fontWeight: FontWeight.w400,
+        body: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomePage()),
+            );
+          },
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const Text(
+                  'Diaryminder',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'JockeyOne',
+                    fontSize: 50,
+                  ),
                 ),
-              ),
-              // Text(
-              //   '$_counter',
-              //   style: Theme.of(context).textTheme.headlineMedium,
-              // ),
-            ],
+                // Text(
+                //   '$_counter',
+                //   style: Theme.of(context).textTheme.headlineMedium,
+                // ),
+              ],
+            ),
           ),
         ),
         // floatingActionButton: FloatingActionButton(
