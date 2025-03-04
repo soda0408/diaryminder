@@ -8,14 +8,12 @@ class AppColor {
 
 class _Brand {
   final Color primary = const Color(0xFFFFFFFF);
-  final Color secondary = const Color(0xFFFF9D68);
-  final Color logo = const Color(0xFFFF9857);
-
-  final Color tertiary = const Color(0xFF9ACCE2);
+  final Color secondary = const Color(0xFF062E3C);
+  final Color accent = const Color(0xFF9CB4B4);
 }
 
 class _Text {
-  final Color primary = const Color(0xFF373737);
+  final Color primary = const Color(0xFF062E3C);
   final Color appBarTitle = const Color(0xFF373737);
   final Color gray = const Color(0xFF808080);
   final Color blackMid = const Color(0x61000000);

@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'package:diaryminder/constant/app_color.dart';
 
-class StartPage extends StatefulWidget {
-  const StartPage({super.key});
+class TitlePage extends StatefulWidget {
+  const TitlePage({super.key});
 
   @override
-  State<StartPage> createState() => _StartPageState();
+  State<TitlePage> createState() => _TitlePageState();
 }
 
-class _StartPageState extends State<StartPage> {
+class _TitlePageState extends State<TitlePage> {
   @override
   Widget build(BuildContext context) {
     final double deviceHeight = MediaQuery.of(context).size.height;
@@ -67,7 +67,7 @@ class _StartPageState extends State<StartPage> {
                     children: [
                       IconButton(
                         style: IconButton.styleFrom(
-                          foregroundColor: AppColor.brand.logo,
+                          foregroundColor: AppColor.brand.secondary,
                           backgroundColor: AppColor.brand.primary,
                           iconSize: deviceWidth / 18,
                           shape: RoundedRectangleBorder(
@@ -87,7 +87,7 @@ class _StartPageState extends State<StartPage> {
                       TextButton(
                         style: TextButton.styleFrom(
                           fixedSize: Size(deviceWidth / 5, deviceHeight / 9),
-                          foregroundColor: AppColor.brand.logo,
+                          foregroundColor: AppColor.brand.secondary,
                           backgroundColor: AppColor.brand.primary,
                           textStyle: TextStyle(fontSize: deviceWidth / 23),
                         ),
@@ -103,7 +103,7 @@ class _StartPageState extends State<StartPage> {
                       ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          foregroundColor: AppColor.brand.logo,
+                          foregroundColor: AppColor.brand.secondary,
                           backgroundColor: AppColor.brand.primary,
                           fixedSize: Size(deviceWidth / 14, deviceWidth / 14),
                           shape: RoundedRectangleBorder(
