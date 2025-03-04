@@ -1,6 +1,6 @@
-import 'package:diaryminder/main.dart';
 import 'package:flutter/material.dart';
 import 'package:diaryminder/constant/app_color.dart';
+import 'package:diaryminder/widgets/app_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
