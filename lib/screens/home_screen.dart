@@ -1,3 +1,4 @@
+import 'package:diaryminder/main.dart';
 import 'package:flutter/material.dart';
 import 'package:diaryminder/constant/app_color.dart';
 
@@ -12,38 +13,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColor.brand.secondary,
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-        leading: IconButton(
-          onPressed: () => Navigator.of(context).pop,
-          icon: Icon(
-            Icons.menu_rounded,
-            color: AppColor.brand.primary,
-            size: 35,
-          ),
-        ),
-        title: Text(
-          'Diaryminder',
-          style: TextStyle(
-            color: Colors.white,
-            fontFamily: 'JockeyOne',
-            fontSize: 30,
-          ),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () => Navigator.of(context).pop,
-            icon: Icon(
-              Icons.notifications_none_rounded,
-              color: AppColor.brand.primary,
-              size: 35,
-            ),
-          ),
-          SizedBox(width: 5),
-        ],
-      ),
+      appBar: DiaryminderAppBar,
       backgroundColor: AppColor.brand.accent,
       body: Center(child: Text("ホーム画面")),
       bottomNavigationBar: BottomNavigationBar(
