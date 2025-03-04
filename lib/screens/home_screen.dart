@@ -13,13 +13,33 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: AppColor.brand.secondary,
+        centerTitle: true,
         title: Text(
           'Diaryminder',
-          style: TextStyle(color: Colors.white, fontFamily: 'JockeyOne'),
+          style: TextStyle(
+            color: Colors.white,
+            fontFamily: 'JockeyOne',
+            fontSize: 30,
+          ),
         ),
       ),
       backgroundColor: AppColor.brand.accent,
       body: Center(child: Text("ホーム画面")),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_outlined),
+            label: 'home',
+            tooltip: 'home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.camera_alt_outlined),
+            label: 'camera',
+            tooltip: 'camera',
+          ),
+        ],
+      ),
     );
   }
 }
