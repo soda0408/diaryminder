@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [AppColor.brand.accent, AppColor.brand.secondary],
+          colors: [Color(0XFFAEFAFA), AppColor.brand.secondary],
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
         ),
