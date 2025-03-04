@@ -30,37 +30,55 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  // int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+  // void _incrementCounter() {
+  //   setState(() {
+  //     _counter++;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [AppColor.brand.accent, AppColor.brand.secondary],
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      child: Scaffold(
+        // appBar: AppBar(
+        //   backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        //   title: Text(widget.title),
+        // ),
+        backgroundColor: Colors.transparent,
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Text(
+                'Diaryminder',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'JockeyOne',
+                  fontSize: 50,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              // Text(
+              //   '$_counter',
+              //   style: Theme.of(context).textTheme.headlineMedium,
+              // ),
+            ],
+          ),
+        ),
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: _incrementCounter,
+        //   tooltip: 'Increment',
+        //   child: const Icon(Icons.add),
+        // ),
       ),
     );
   }
