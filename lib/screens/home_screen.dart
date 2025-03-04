@@ -14,7 +14,16 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColor.brand.secondary,
+        automaticallyImplyLeading: false,
         centerTitle: true,
+        leading: IconButton(
+          onPressed: () => Navigator.of(context).pop,
+          icon: Icon(
+            Icons.menu_rounded,
+            color: AppColor.brand.primary,
+            size: 35,
+          ),
+        ),
         title: Text(
           'Diaryminder',
           style: TextStyle(
@@ -23,20 +32,46 @@ class _HomePageState extends State<HomePage> {
             fontSize: 30,
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () => Navigator.of(context).pop,
+            icon: Icon(
+              Icons.notifications_none_rounded,
+              color: AppColor.brand.primary,
+              size: 35,
+            ),
+          ),
+          SizedBox(width: 5),
+        ],
       ),
       backgroundColor: AppColor.brand.accent,
       body: Center(child: Text("ホーム画面")),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        backgroundColor: AppColor.brand.secondary,
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            label: 'home',
-            tooltip: 'home',
+            icon: Icon(
+              Icons.calendar_view_day_rounded,
+              color: AppColor.brand.primary,
+              size: 35,
+            ),
+            label: 'today',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.camera_alt_outlined),
+            icon: Icon(
+              Icons.camera_alt_outlined,
+              color: AppColor.brand.primary,
+              size: 35,
+            ),
             label: 'camera',
-            tooltip: 'camera',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.calendar_today_rounded,
+              color: AppColor.brand.primary,
+              size: 35,
+            ),
+            label: 'calender',
           ),
         ],
       ),
