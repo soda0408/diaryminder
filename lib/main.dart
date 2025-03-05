@@ -30,14 +30,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // int _counter = 0;
-
-  // void _incrementCounter() {
-  //   setState(() {
-  //     _counter++;
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -49,10 +41,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       child: Scaffold(
-        // appBar: AppBar(
-        //   backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        //   title: Text(widget.title),
-        // ),
         backgroundColor: Colors.transparent,
         body: Center(
           child: Column(
@@ -67,18 +55,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   fontWeight: FontWeight.w400,
                 ),
               ),
-              // Text(
-              //   '$_counter',
-              //   style: Theme.of(context).textTheme.headlineMedium,
-              // ),
             ],
           ),
         ),
-        // floatingActionButton: FloatingActionButton(
-        //   onPressed: _incrementCounter,
-        //   tooltip: 'Increment',
-        //   child: const Icon(Icons.add),
-        // ),
       ),
     );
   }
