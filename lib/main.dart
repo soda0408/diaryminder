@@ -1,13 +1,13 @@
-import 'package:diaryminder/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'constant/app_color.dart';
+import 'package:diaryminder/screens/main_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const Diaryminder());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Diaryminder extends StatelessWidget {
+  const Diaryminder({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -46,7 +46,7 @@ class _TitlePageState extends State<TitlePage> {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => HomePage()),
+              MaterialPageRoute(builder: (context) => MainPage()),
             );
           },
           child: Center(
