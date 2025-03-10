@@ -29,14 +29,6 @@ class TitlePage extends StatefulWidget {
 }
 
 class _TitlePageState extends State<TitlePage> {
-  // int _counter = 0;
-
-  // void _incrementCounter() {
-  //   setState(() {
-  //     _counter++;
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -48,10 +40,6 @@ class _TitlePageState extends State<TitlePage> {
         ),
       ),
       child: Scaffold(
-        // appBar: AppBar(
-        //   backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        //   title: Text(widget.title),
-        // ),
         backgroundColor: Colors.transparent,
         body: GestureDetector(
           behavior: HitTestBehavior.opaque,
@@ -73,19 +61,10 @@ class _TitlePageState extends State<TitlePage> {
                     fontSize: 50,
                   ),
                 ),
-                // Text(
-                //   '$_counter',
-                //   style: Theme.of(context).textTheme.headlineMedium,
-                // ),
               ],
             ),
           ),
         ),
-        // floatingActionButton: FloatingActionButton(
-        //   onPressed: _incrementCounter,
-        //   tooltip: 'Increment',
-        //   child: const Icon(Icons.add),
-        // ),
       ),
     );
   }
