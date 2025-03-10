@@ -16,20 +16,17 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int _currentIndex = 0;
   final items = <BottomNavigationBarItem>[
+    BottomNavigationBarItem(icon: Icon(Icons.home_rounded), label: 'home'),
     BottomNavigationBarItem(
-      icon: Icon(Icons.home_rounded, size: 35),
-      label: 'home',
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.calendar_view_day_rounded, size: 35),
+      icon: Icon(Icons.calendar_view_day_rounded),
       label: 'today',
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.calendar_today_rounded, size: 35),
+      icon: Icon(Icons.calendar_today_rounded),
       label: 'calender',
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.camera_alt_outlined, size: 35),
+      icon: Icon(Icons.camera_alt_outlined),
       label: 'scan',
     ),
   ];
@@ -44,14 +41,15 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: DiaryminderAppBar,
-      backgroundColor: AppColor.brand.accent,
+      backgroundColor: AppColor.ui.background,
       body: Stack(
         children: <Widget>[
           IndexedStack(index: _currentIndex, children: screens),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        fixedColor: AppColor.brand.primary,
+        selectedItemColor: AppColor.ui.primary,
+        unselectedItemColor: AppColor.ui.gray,
         currentIndex: _currentIndex,
         onTap:
             (selectedIndex) => setState(() {
@@ -59,7 +57,6 @@ class _MainPageState extends State<MainPage> {
             }),
         type: BottomNavigationBarType.fixed,
         backgroundColor: AppColor.brand.secondary,
-        selectedLabelStyle: TextStyle(color: AppColor.brand.primary),
         items: items,
       ),
     );
