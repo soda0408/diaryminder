@@ -3,6 +3,7 @@ import 'constant/app_color.dart';
 import 'package:diaryminder/screens/main_page.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const Diaryminder());
 }
 

@@ -8,7 +8,11 @@ plugins {
 android {
     namespace = "com.example.diaryminder"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "27.0.12077973"
+
+    buildFeatures {
+        buildConfig = true  // この設定を追加
+    }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -24,7 +28,7 @@ android {
         applicationId = "com.example.diaryminder"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
+        minSdk = 21
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
@@ -41,4 +45,9 @@ android {
 
 flutter {
     source = "../.."
+}
+
+
+dependencies {
+    implementation("com.google.mlkit:text-recognition-japanese:16.0.0")
 }
