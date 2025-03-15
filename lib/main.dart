@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
-import 'constant/app_color.dart';
-import 'package:diaryminder/screens/main_page.dart';
+// 'package:flutter_local_notifications/flutter_local_notifications.dart' のインポートを削除
+import 'package:diaryminder/constant/app_color.dart'; // AppColorのインポート
 import 'package:diaryminder/screens/today_screen.dart'; // TodayScreenのインポート
+import 'package:diaryminder/screens/main_page.dart'; // MainPageのインポート
+import 'package:diaryminder/widgets/app_bar.dart'; // AppBarのインポート
+import 'package:intl/intl.dart'; // 日付フォーマットのインポート
+import 'package:timezone/data/latest.dart' as tz; // タイムゾーンデータのインポート
+import 'package:timezone/timezone.dart' as tz; // タイムゾーンのインポート
 
 void main() {
+  tz.initializeTimeZones(); // タイムゾーンの初期化
   runApp(const Diaryminder());
 }
 
@@ -14,7 +20,7 @@ class Diaryminder extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(colorSchemeSeed: AppColor.brand.secondary),
-      home: const TodayScreen(), // 最初に表示する画面をTodayScreenに設定
+      home: const ToDoListPage(), // 最初に表示する画面をToDoListPageに設定
       debugShowCheckedModeBanner: false,
     );
   }
@@ -26,10 +32,11 @@ class TitlePage extends StatefulWidget {
   final String title;
 
   @override
-  State<TitlePage> createState() => _TitlePageState();
+  State<TitlePage> createState() => TitlePageState(); // クラス名をパブリックに変更
 }
 
-class _TitlePageState extends State<TitlePage> {
+class TitlePageState extends State<TitlePage> {
+  // クラス名をパブリックに変更
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -67,6 +74,18 @@ class _TitlePageState extends State<TitlePage> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class TodayScreen extends StatelessWidget {
+  const TodayScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Today\'s Screen')),
+      body: const Center(child: Text('Welcome to Today\'s Screen!')),
     );
   }
 }

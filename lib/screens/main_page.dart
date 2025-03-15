@@ -4,7 +4,7 @@ import 'package:diaryminder/widgets/app_bar.dart';
 import 'package:diaryminder/screens/home_screen.dart';
 import 'package:diaryminder/screens/calender_screen.dart';
 import 'package:diaryminder/screens/scan_screen.dart';
-import 'package:diaryminder/screens/today_screen.dart';
+import 'package:diaryminder/screens/today_screen.dart'; // Ensure this import is correct
 
 class MainPage extends StatefulWidget {
   final int selectedIndex;
@@ -20,7 +20,7 @@ class _MainPageState extends State<MainPage> {
     HomeScreen(),
     CalenderScreen(),
     ScanScreen(),
-    TodayScreen(),
+    ToDoListPage(), // 修正: TodayScreenをToDoListPageに変更
   ];
 
   final items = <BottomNavigationBarItem>[
@@ -33,7 +33,10 @@ class _MainPageState extends State<MainPage> {
       icon: Icon(Icons.camera_alt_outlined),
       label: 'scan',
     ),
-    BottomNavigationBarItem(icon: Icon(Icons.today), label: 'today'),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.list),
+      label: 'ToDo List',
+    ), // 修正: アイコンとラベルを変更
   ];
 
   @override
