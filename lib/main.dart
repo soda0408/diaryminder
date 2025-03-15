@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
-import 'package:path_provider/path_provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +25,14 @@ class _OCRScreenState extends State<OCRScreen> {
   File? _image;
   String _recognizedText = "";
   final ImagePicker _picker = ImagePicker();
-  final textRecognizer = TextRecognizer();
+  // final textRecognizer = TextRecognizer(script: TextRecognitionScript.japanese);
+  late final TextRecognizer textRecognizer;
+
+  @override
+  void initState() {
+    super.initState();
+    textRecognizer = TextRecognizer(script: TextRecognitionScript.japanese);
+  }
 
   Future<void> _pickImage(ImageSource source) async {
     final pickedFile = await _picker.pickImage(source: source);
@@ -40,16 +46,20 @@ class _OCRScreenState extends State<OCRScreen> {
 
   Future<void> _processTestImage() async {
     try {
-      final ByteData = await rootBundle.load('assets/images/photo.png');
-      final tempDir = await getTemporaryDirectory();
+      final bytes = await rootBundle.load('assets/images/photo.png');
+      final tempDir = Directory.systemTemp;
       final tempFile = File('${tempDir.path}/photo.png');
-      await tempFile.writeAsBytes(ByteData.buffer.asUint8List());
+      await tempFile.writeAsBytes(bytes.buffer.asUint8List());
       setState(() {
         _image = tempFile;
+        _recognizedText = "画像を処理中...";
       });
-      _processImage();
+      await _processImage();
     } catch (e) {
       print('Error loading test image: $e');
+      setState(() {
+        _recognizedText = "エラー: $e"; // エラーメッセージを表示
+      });
     }
   }
 
@@ -151,7 +161,10 @@ class _OCRScreenState extends State<OCRScreen> {
                         ),
                       ),
                       const SizedBox(height: 8),
-                      Text(_recognizedText),
+                      SelectableText(
+                        _recognizedText,
+                        style: const TextStyle(height: 1.5),
+                      ),
                     ],
                   ),
                 ),

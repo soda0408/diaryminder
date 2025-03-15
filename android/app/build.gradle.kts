@@ -8,7 +8,7 @@ plugins {
 android {
     namespace = "com.example.diaryminder"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "27.0.12077973"
 
     buildFeatures {
         buildConfig = true  // この設定を追加
@@ -45,4 +45,9 @@ android {
 
 flutter {
     source = "../.."
+}
+
+
+dependencies {
+    implementation("com.google.mlkit:text-recognition-japanese:16.0.0")
 }
