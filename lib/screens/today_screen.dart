@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:diaryminder/constant/app_color.dart'; // AppColorのインポート
+import 'package:diaryminder/screens/main_page.dart'; // MainPageのインポート
 import 'package:flutter_local_notifications/flutter_local_notifications.dart'; // 通知パッケージのインポート
 import 'package:intl/intl.dart'; // 日付フォーマットのインポート
 import 'package:timezone/data/latest.dart' as tz; // タイムゾーンデータのインポート
@@ -106,7 +107,7 @@ class ToDoListPageState extends State<ToDoListPage> {
   Widget _buildToDoItem(Map<String, dynamic> item, int index) {
     return ListTile(
       title: Text(item['task']),
-      subtitle: Text(DateFormat('yyyy年MM月dd日HH時mm分').format(item['dateTime'])),
+      subtitle: Text(DateFormat('yyyy-MM-dd HH:mm').format(item['dateTime'])),
       trailing: IconButton(
         icon: Icon(Icons.delete),
         onPressed: () {
