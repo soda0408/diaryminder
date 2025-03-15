@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:diaryminder/constant/app_color.dart'; // AppColorのインポート
-import 'package:diaryminder/screens/main_page.dart'; // MainPageのインポート
 import 'package:timezone/data/latest.dart' as tz; // タイムゾーンデータのインポート
 import 'package:diaryminder/widgets/app_bar.dart';
 import 'package:diaryminder/screens/home_screen.dart';
 import 'package:diaryminder/screens/calender_screen.dart';
 import 'package:diaryminder/screens/scan_screen.dart';
 import 'package:diaryminder/screens/today_screen.dart';
+import 'package:diaryminder/screens/main_page.dart'; // MainPageのインポート
 
 void main() {
   tz.initializeTimeZones(); // タイムゾーンの初期化
