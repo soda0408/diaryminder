@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'constant/app_color.dart';
 import 'package:diaryminder/screens/main_page.dart';
+import 'package:diaryminder/screens/today_screen.dart'; // TodayScreenのインポート
 
 void main() {
   runApp(const Diaryminder());
@@ -13,7 +14,7 @@ class Diaryminder extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(colorSchemeSeed: AppColor.brand.secondary),
-      home: const TitlePage(title: 'Diaryminder'),
+      home: const TodayScreen(), // 最初に表示する画面をTodayScreenに設定
       debugShowCheckedModeBanner: false,
     );
   }

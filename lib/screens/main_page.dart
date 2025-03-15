@@ -7,20 +7,24 @@ import 'package:diaryminder/screens/scan_screen.dart';
 import 'package:diaryminder/screens/today_screen.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+  final int selectedIndex;
+  const MainPage({super.key, this.selectedIndex = 0});
 
   @override
   State<MainPage> createState() => _MainPageState();
 }
 
 class _MainPageState extends State<MainPage> {
-  int _currentIndex = 0;
+  late int _currentIndex;
+  final List<Widget> _screens = [
+    HomeScreen(),
+    CalenderScreen(),
+    ScanScreen(),
+    TodayScreen(),
+  ];
+
   final items = <BottomNavigationBarItem>[
     BottomNavigationBarItem(icon: Icon(Icons.home_rounded), label: 'home'),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.calendar_view_day_rounded),
-      label: 'today',
-    ),
     BottomNavigationBarItem(
       icon: Icon(Icons.calendar_today_rounded),
       label: 'calender',
@@ -29,32 +33,32 @@ class _MainPageState extends State<MainPage> {
       icon: Icon(Icons.camera_alt_outlined),
       label: 'scan',
     ),
+    BottomNavigationBarItem(icon: Icon(Icons.today), label: 'today'),
   ];
-  final screens = <Widget>[
-    HomeScreen(),
-    TodayScreen(),
-    CalenderScreen(),
-    ScanScreen(),
-  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _currentIndex = widget.selectedIndex;
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: DiaryminderAppBar,
       backgroundColor: AppColor.ui.background,
-      body: Stack(
-        children: <Widget>[
-          IndexedStack(index: _currentIndex, children: screens),
-        ],
-      ),
+      body: IndexedStack(index: _currentIndex, children: _screens),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: AppColor.ui.primary,
         unselectedItemColor: AppColor.ui.gray,
         currentIndex: _currentIndex,
-        onTap:
-            (selectedIndex) => setState(() {
-              _currentIndex = selectedIndex;
-            }),
+        onTap: _onItemTapped,
         type: BottomNavigationBarType.fixed,
         backgroundColor: AppColor.brand.secondary,
         items: items,
