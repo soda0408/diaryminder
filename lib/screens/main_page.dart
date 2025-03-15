@@ -20,7 +20,7 @@ class _MainPageState extends State<MainPage> {
     HomeScreen(),
     CalenderScreen(),
     ScanScreen(),
-    ToDoListPage(), // 修正: TodayScreenをToDoListPageに変更
+    ToDoListPage(), // 修正: ToDoListPageを追加
   ];
 
   final items = <BottomNavigationBarItem>[

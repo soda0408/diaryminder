@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:diaryminder/constant/app_color.dart'; // AppColorのインポート
-import 'package:diaryminder/screens/today_screen.dart'; // TodayScreenのインポート
-import 'package:diaryminder/screens/main_page.dart'; // MainPageのインポート
-import 'package:diaryminder/widgets/app_bar.dart'; // AppBarのインポート
 import 'package:flutter_local_notifications/flutter_local_notifications.dart'; // 通知パッケージのインポート
 import 'package:intl/intl.dart'; // 日付フォーマットのインポート
 import 'package:timezone/data/latest.dart' as tz; // タイムゾーンデータのインポート
 import 'package:timezone/timezone.dart' as tz; // タイムゾーンのインポート
 
 void main() {
-  tz.initializeTimeZones(); // タイムゾーンの初期化
+  tz.initializeTimeZones();
   runApp(const Diaryminder());
 }
 
@@ -20,7 +17,7 @@ class Diaryminder extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(colorSchemeSeed: AppColor.brand.secondary),
-      home: const ToDoListPage(), // 最初に表示する画面をToDoListPageに設定
+      home: const ToDoListPage(),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -109,7 +106,7 @@ class ToDoListPageState extends State<ToDoListPage> {
   Widget _buildToDoItem(Map<String, dynamic> item, int index) {
     return ListTile(
       title: Text(item['task']),
-      subtitle: Text(DateFormat('yyyy-MM-dd HH:mm').format(item['dateTime'])),
+      subtitle: Text(DateFormat('yyyy年MM月dd日HH時mm分').format(item['dateTime'])),
       trailing: IconButton(
         icon: Icon(Icons.delete),
         onPressed: () {
@@ -122,15 +119,8 @@ class ToDoListPageState extends State<ToDoListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DiaryminderAppBar, // AppBarを追加
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [AppColor.ui.primary, AppColor.ui.secondary],
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-          ),
-        ),
+        color: AppColor.ui.background, // 背景色を統一
         child: ListView.builder(
           itemCount: _toDoItems.length,
           itemBuilder: (context, index) {
@@ -143,36 +133,6 @@ class ToDoListPageState extends State<ToDoListPage> {
         tooltip: 'Add task',
         child: Icon(Icons.add),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: AppColor.ui.primary,
-        unselectedItemColor: AppColor.ui.gray,
-        currentIndex: 1, // ToDoListPageのインデックスを設定
-        onTap: (selectedIndex) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => MainPage(selectedIndex: selectedIndex),
-            ),
-          );
-        },
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: AppColor.brand.secondary,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_rounded),
-            label: 'home',
-          ),
-          BottomNavigationBarItem(icon: Icon(Icons.list), label: 'ToDo List'),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_today_rounded),
-            label: 'calender',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.camera_alt_outlined),
-            label: 'scan',
-          ),
-        ],
-      ),
     );
   }
 
@@ -180,6 +140,8 @@ class ToDoListPageState extends State<ToDoListPage> {
     String newTask = '';
     DateTime selectedDateTime = DateTime.now();
     Duration notificationDuration = Duration(minutes: 10);
+    String? dateTimeError;
+    String? notificationDurationError;
 
     return showDialog<void>(
       context: context,
@@ -199,20 +161,34 @@ class ToDoListPageState extends State<ToDoListPage> {
               TextField(
                 decoration: InputDecoration(
                   hintText: '日時を入力してください (西暦-月-日 時:分)',
+                  errorText: dateTimeError,
                 ),
                 onChanged: (value) {
-                  selectedDateTime = DateFormat(
-                    'yyyy-MM-dd HH:mm',
-                  ).parse(value);
+                  try {
+                    selectedDateTime = DateFormat(
+                      'yyyy-MM-dd HH:mm',
+                    ).parse(value);
+                    dateTimeError = null;
+                  } catch (e) {
+                    dateTimeError = '無効な日時フォーマットです';
+                  }
+                  setState(() {});
                 },
               ),
               SizedBox(height: 10),
               TextField(
                 decoration: InputDecoration(
                   hintText: '通知を送る時間を入力してください (分)',
+                  errorText: notificationDurationError,
                 ),
                 onChanged: (value) {
-                  notificationDuration = Duration(minutes: int.parse(value));
+                  try {
+                    notificationDuration = Duration(minutes: int.parse(value));
+                    notificationDurationError = null;
+                  } catch (e) {
+                    notificationDurationError = '無効な分数フォーマットです';
+                  }
+                  setState(() {});
                 },
               ),
             ],
@@ -227,8 +203,11 @@ class ToDoListPageState extends State<ToDoListPage> {
             TextButton(
               child: Text('追加'),
               onPressed: () {
-                _addToDoItem(newTask, selectedDateTime, notificationDuration);
-                Navigator.of(context).pop();
+                if (dateTimeError == null &&
+                    notificationDurationError == null) {
+                  _addToDoItem(newTask, selectedDateTime, notificationDuration);
+                  Navigator.of(context).pop();
+                }
               },
             ),
           ],

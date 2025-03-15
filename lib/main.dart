@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-// 'package:flutter_local_notifications/flutter_local_notifications.dart' のインポートを削除
 import 'package:diaryminder/constant/app_color.dart'; // AppColorのインポート
-import 'package:diaryminder/screens/today_screen.dart'; // TodayScreenのインポート
 import 'package:diaryminder/screens/main_page.dart'; // MainPageのインポート
-import 'package:diaryminder/widgets/app_bar.dart'; // AppBarのインポート
-import 'package:intl/intl.dart'; // 日付フォーマットのインポート
 import 'package:timezone/data/latest.dart' as tz; // タイムゾーンデータのインポート
-import 'package:timezone/timezone.dart' as tz; // タイムゾーンのインポート
 
 void main() {
   tz.initializeTimeZones(); // タイムゾーンの初期化
@@ -20,7 +15,7 @@ class Diaryminder extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(colorSchemeSeed: AppColor.brand.secondary),
-      home: const ToDoListPage(), // 最初に表示する画面をToDoListPageに設定
+      home: const TitlePage(title: 'Diaryminder'), // 最初に表示する画面をTitlePageに設定
       debugShowCheckedModeBanner: false,
     );
   }
@@ -32,11 +27,10 @@ class TitlePage extends StatefulWidget {
   final String title;
 
   @override
-  State<TitlePage> createState() => TitlePageState(); // クラス名をパブリックに変更
+  State<TitlePage> createState() => TitlePageState();
 }
 
 class TitlePageState extends State<TitlePage> {
-  // クラス名をパブリックに変更
   @override
   Widget build(BuildContext context) {
     return Container(
